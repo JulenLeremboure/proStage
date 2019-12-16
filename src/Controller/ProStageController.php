@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ProStageController extends AbstractController
 {
     /**
-     * @Route("/", name="pro_stage")
+     * @Route("/", name="accueil")
      */
     public function afficherAccueil()
     {
