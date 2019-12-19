@@ -26,7 +26,7 @@ class Stage
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $descrption;
+    private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -65,14 +65,14 @@ class Stage
         return $this;
     }
 
-    public function getDescrption(): ?string
+    public function getDescription(): ?string
     {
-        return $this->descrption;
+        return $this->description;
     }
 
-    public function setDescrption(?string $descrption): self
+    public function setDescription(?string $description): self
     {
-        $this->descrption = $descrption;
+        $this->description = $description;
 
         return $this;
     }
