@@ -4,6 +4,27 @@
 
 {% block body %}
 
-    <p><h1>Voici la liste des entreprises enregistrées sur ce site.</h1></p>
+
+        <div class="row">
+            {% for entreprise in listeEntreprises if entreprise.stages != NULL %}
+            <div class="col-md-6" >
+                <div class="list-group" style="margin-bottom: 20px">
+                     <a href="#" class="list-group-item list-group-item-action active"><strong><h2>{{entreprise.nom}}</h2></strong></a>
+                    <div class="list-group-item">
+                        <h6 class="list-group-item-heading">
+                            Activité : {{entreprise.activite}}
+                        </h6>
+                        <p>
+                            <a>Voir tous les stages de l'entreprise {{entreprise.nom}}</a>
+                        </p>
+                    </div>
+                 </div>
+            </div>
+            {% endfor %}
+        </div>
+
+                
+
+
 
 {% endblock %}

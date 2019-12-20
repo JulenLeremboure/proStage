@@ -5,6 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use App\Entity\Entreprise;
+use App\Entity\Formation;
+use App\Entity\Stage;
 
 class ProStageController extends AbstractController
 {
@@ -13,8 +16,11 @@ class ProStageController extends AbstractController
      */
     public function afficherAccueil()
     {
+        $listeStages = $this->getDoctrine()->getRepository(Stage::class)
+                                            ->findAll();
+
         return $this->render('pro_stage/index.html.twig', [
-            'controller_name' => 'ProStageController',
+            'listeStages' => $listeStages
         ]);
     }
 
@@ -22,7 +28,20 @@ class ProStageController extends AbstractController
      * @Route("/entreprises", name="entreprises")
      */
     public function afficherEntreprises(){
-        return $this->render('pro_stage/entreprises.html.twig');
+        $listeEntreprises = $this->getDoctrine()->getRepository(Entreprise::class)
+        ->findAll();
+
+        return $this->render('pro_stage/entreprises.html.twig', [
+            'listeEntreprises' => $listeEntreprises
+        ]);
+    }
+
+    /**
+     * @Route("/stagesEntreprise/{id}", name="stagesEntreprise")
+     */
+    public function afficherStageEntreprise(int $id){
+        return $this->render('pro_stage/stagesEntreprises.html.twig',['id'=>$id,]);
+    }
     }
 
     /**
@@ -33,7 +52,7 @@ class ProStageController extends AbstractController
     }
 
     /**
-     * @Route("/stages/{id}", name="stage")
+     * @Route("/stage/{id}", name="stage")
      */
     public function afficherStage(int $id){
         return $this->render('pro_stage/stage.html.twig',['id'=>$id,]);
