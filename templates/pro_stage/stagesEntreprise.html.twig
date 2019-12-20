@@ -1,10 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Stages de {{nomEntreprise}}{% endblock %}
+{% block title %}Stages de {{entreprise.nom}}{% endblock %}
 
 {% block body %}
 
-
+<div class="row">
+        {% for stage in listeStagesEntreprise %}
+            <div class="col-md-6" >
+                <div class="list-group" style="margin-bottom: 20px">
+                     <a class="list-group-item list-group-item-action active">
+                         <strong><h2>{{stage.titre}}</h2></strong><br>
+                         <strong><h5>{{entreprise.nom}}</h5></strong>
+                    </a>
+                    <div class="list-group-item">
+                        <h6 class="list-group-item-heading">
+                            Description sur stage :
+                            {{stage.description}}
+                        </h6>
+                        <p>
+                            <a href="{{path('stage',{id:stage.id})}}">En savoir plus sur le stage</a>
+                        </p>
+                    </div>
+                 </div>
+            </div>
+            {% endfor %}
+        </div>
         
 
                 

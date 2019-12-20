@@ -24,6 +24,7 @@ class AppFixtures extends Fixture
         $formation = new Formation;
 
         $formation->setNom($nomFormation);
+
         $manager->persist($formation);
 
         for ($i=0; $i < $nbEntrepriseParFormation; $i++) {
@@ -49,6 +50,7 @@ class AppFixtures extends Fixture
                                 $timezone = 'Europe/Paris'));
                 $stage->setEntreprise($entreprise);
                 $stage->setMailContact($faker->email()); //AH
+                $stage->addFormation($formation);
                 
                 $manager->persist($stage);
             }

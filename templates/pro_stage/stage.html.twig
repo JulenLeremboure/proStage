@@ -1,9 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Stage {{id}}{% endblock %}
+{% block title %}Stage {{stage.id}}{% endblock %}
 
 {% block body %}
-
-    <p><h1>Voici la page du stage {{ id }} .</h1></p>
+    <div>
+            <h1>{{ stage.entreprise.nom }} - {{ stage.titre }}</h1>
+            <h6>Stage numéro {{stage.id}}</h6>
+    </div>
+    
+    <div>
+        <br><br><br>
+    </div>
+    <div>
+        <strong><p>Description</p></strong>
+        <p>{{ stage.description }}</p>
+        <strong>Date de début</strong>
+        <p>{{ stage.dateDebut | date("d/m/Y") }}</p>
+        <strong>Date de fin</strong>
+        <p>{{ stage.dateFin | date("d/m/Y") }}</p>
+        <strong>Formation</strong>
+        <p>{% for formation in stage.formations %}
+            <p>{{ formation.nom }}</p>
+            {% endfor %}
+        </p>
+    </div>
+    
 
 {% endblock %}
