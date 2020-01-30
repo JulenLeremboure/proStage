@@ -17,7 +17,7 @@ class StageRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Stage::class);
-    }
+    }    
 
     // /**
     //  * @return Stage[] Returns an array of Stage objects

@@ -19,6 +19,18 @@ class EntrepriseRepository extends ServiceEntityRepository
         parent::__construct($registry, Entreprise::class);
     }
 
+    public function fetchByNomEntreprise($entreprise)
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.nom = :val')
+            ->setParameter('val', $value)
+            ->orderBy('e.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Entreprise[] Returns an array of Entreprise objects
     //  */

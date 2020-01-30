@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stages de {{formation.nom}}{% endblock %}
+
+{% block body %}
+
+<div class="row">
+        {% for stage in listeStagesFormation %}
+            <div class="col-md-6" >
+                <div class="list-group" style="margin-bottom: 20px">
+                     <a class="list-group-item list-group-item-action active">
+                         <strong><h2>{{stage.titre}}</h2></strong><br>
+                         <strong><h5>{{formation.nom}}</h5></strong>
+                    </a>
+                    <div class="list-group-item">
+                        <h6 class="list-group-item-heading">
+                            Description sur stage :
+                            {{stage.description}}
+                        </h6>
+                        <p>
+                            <a href="{{path('stage', {id:stage.id})}}">En savoir plus sur le stage</a>
+                        </p>
+                    </div>
+                 </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+
+                
+
+
+
+{% endblock %}
