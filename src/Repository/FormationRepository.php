@@ -19,15 +19,7 @@ class FormationRepository extends ServiceEntityRepository
         parent::__construct($registry, Formation::class);
     }
 
-    public function fetchByNomFormation($formation)
-    {
-        return $this->getEntityManager()->createQuery(
-            'SELECT f
-            FROM App\Entity\Formation f
-            WHERE f.nom = :formation')
-            ->execute();
-        
-    }
+    
 
     // /**
     //  * @return Formation[] Returns an array of Formation objects

@@ -9,6 +9,7 @@ use App\Entity\Entreprise;
 use App\Entity\Formation;
 use App\Entity\Stage;
 
+
 class ProStageController extends AbstractController
 {
     /**
@@ -39,7 +40,7 @@ class ProStageController extends AbstractController
     /**
      * @Route("/stagesEntreprise/{nom}", name="stagesEntreprise")
      */
-    public function afficherStageEntreprise(int $nom){
+    public function afficherStagesEntreprise(string $nom){
 
         //$listeStagesEntreprise = $this->getDoctrine()->getRepository(Stage::class)
         //->findByEntreprise($nom);
@@ -48,8 +49,7 @@ class ProStageController extends AbstractController
         ->fetchByNomEntreprise($nom);
 
         $entreprise = $this->getDoctrine()->getRepository(Entreprise::class)
-        ->find($id);
-
+        ->findOneByNom($nom);
 
         return $this->render('pro_stage/stagesEntreprise.html.twig',
                     ['listeStagesEntreprise'=>$listeStagesEntreprise,
@@ -66,20 +66,20 @@ class ProStageController extends AbstractController
         ->findAll();
 
         return $this->render('pro_stage/formations.html.twig',
-                    ['listeFormations'=>$listeFormations]);
+                        ['listeFormations'=>$listeFormations]);
     }
 
     /**
      * @Route("/stagesFormation/{id}", name="stagesFormation")
      */
-    public function afficherStageFormation(int $id){
+    public function afficherStagesFormation(int $id){
 
         $listeStagesFormation = $this->getDoctrine()->getRepository(Stage::class)
-        ->findByFormation($id);
+        ->fetchByFormation($id);
 
 
         $formation = $this->getDoctrine()->getRepository(Formation::class)
-        ->find($id);
+        ->findOneById($id);
 
 
         return $this->render('pro_stage/stagesFormation.html.twig',
@@ -95,6 +95,14 @@ class ProStageController extends AbstractController
         ->find($id);
 
         return $this->render('pro_stage/stage.html.twig',['stage'=>$stage]);
+    }
+
+    /**
+     * @Route("/ajoutEntreprise", name="ajoutEntreprise")
+     */
+    public function afficherFormulaire_AjoutEntreprise(){
+
+        return $this->render('pro_stage/ajoutEntreprise.html.twig');
     }
 
 }

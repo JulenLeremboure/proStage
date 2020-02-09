@@ -32,7 +32,7 @@ class AppFixtures extends Fixture
 
             $entreprise->setNom($faker->company());
             $entreprise->setAdresse($faker->address());
-            $entreprise->setActivite($faker->regexify('(Jeux\-Video)|(Service de suivi de garage)|(Comptabilite)'));
+            $entreprise->setActivite($faker->randomElement($array = array('Jeux-Video','Service de suivi de garage','Comptabilite')));
             //$entreprise->setSite($faker->url);
         
             $manager->persist($entreprise);
@@ -40,7 +40,7 @@ class AppFixtures extends Fixture
             for ($j=0; $j < $nbStageParEntreprise; $j++) { 
                 $stage = new Stage();
     
-                $stage->setTitre($faker->regexify('(Stage de (Programmation Web)|(Web Design)|(Programmation Java)|(Playtest Fortnite)'));
+                $stage->setTitre('Stage de '.$faker->jobTitle());
                 $stage->setDescription($faker->paragraph);
                 $stage->setDateDebut($faker->dateTimeBetween($startDate = 'now', //AH
                                 $endDate = '+ 1 month', 
@@ -61,7 +61,7 @@ class AppFixtures extends Fixture
 
         $entrepriseSansStage->setNom('L\'entreprise sans stages');
         $entrepriseSansStage->setAdresse($faker->address());
-        $entrepriseSansStage->setActivite($faker->regexify('(Jeux\-Video)|(Service de suivi de garage)|(Comptabilite)'));
+        $entrepriseSansStage->setActivite($faker->regexify('Jeux\-Video|Service de suivi de garage|Comptabilite'));
     
         $manager->persist($entrepriseSansStage);
 
