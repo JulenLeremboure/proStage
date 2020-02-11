@@ -9,6 +9,9 @@ use App\Entity\Entreprise;
 use App\Entity\Formation;
 use App\Entity\Stage;
 
+use Symfony/Component/Form/Extension/Core/Type/TextType;
+use Symfony/Component/Form/Extension/Core/Type/TextareaType;
+
 
 class ProStageController extends AbstractController
 {
@@ -102,7 +105,16 @@ class ProStageController extends AbstractController
      */
     public function afficherFormulaire_AjoutEntreprise(){
 
-        return $this->render('pro_stage/ajoutEntreprise.html.twig');
+        $entreprise = new Entreprise();
+
+        $formulaireAjoutEntreprise = $this -> createFormBuilder($entreprise)
+                                            ->add('nom', TextType::class)
+                                            ->add('adresse', TextareaType::class)
+                                            ->add('activite', TextType::class)
+                                            ->getForm();
+
+        return $this->render('pro_stage/ajoutEntreprise.html.twig',
+                            ['vueFormulaireAjoutEntreprise' => $formulaireAjoutEntreprise -> createView()]);
     }
 
 }

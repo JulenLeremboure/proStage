@@ -5,8 +5,26 @@
 {% block body %}
 
 <div class="row">
-    <div class="col-md-12">
-       
+    <p><h2>Formulaire pour créer son entreprise</h2></p>
+    <div class="col-md-6">
+
+       {{ form_start(vueFormulaireAjoutEntreprise)  }}
+       <div>
+           {{form_label(vueFormulaireAjoutEntreprise.nom)}}
+           {{form_errors(vueFormulaireAjoutEntreprise.nom)}}
+           {{form_widget(vueFormulaireAjoutEntreprise.nom)}}
+       </div>
+       <div>
+        {{form_label(vueFormulaireAjoutEntreprise.adresse)}}
+        {{form_errors(vueFormulaireAjoutEntreprise.adresse)}}
+        {{form_widget(vueFormulaireAjoutEntreprise.adresse)}}
+        </div>
+        <div>
+           {{form_label(vueFormulaireAjoutEntreprise.activite)}}
+           {{form_errors(vueFormulaireAjoutEntreprise.activite)}}
+           {{form_widget(vueFormulaireAjoutEntreprise.activite)}}
+        </div>
+        {{form_end(vueFormulaireAjoutEntreprise)}}
     </div>
 </div>
 
