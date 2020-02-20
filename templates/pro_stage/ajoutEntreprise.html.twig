@@ -4,27 +4,27 @@
 
 {% block body %}
 
-<div class="row">
+<div class="row" style="margin-left: 10%">
     <p><h2>Formulaire pour créer son entreprise</h2></p>
+    <br>
     <div class="col-md-6">
-
-       {{ form_start(vueFormulaireAjoutEntreprise)  }}
+       {{ form_start(vueFormulaireAjoutEntreprise)}}
        <div>
            {{form_label(vueFormulaireAjoutEntreprise.nom)}}
-           {{form_errors(vueFormulaireAjoutEntreprise.nom)}}
-           {{form_widget(vueFormulaireAjoutEntreprise.nom)}}
+           {{form_widget(vueFormulaireAjoutEntreprise.nom), {'attr':{'placeholder':"Safran, Monsanto..."}}}}
        </div>
        <div>
         {{form_label(vueFormulaireAjoutEntreprise.adresse)}}
-        {{form_errors(vueFormulaireAjoutEntreprise.adresse)}}
         {{form_widget(vueFormulaireAjoutEntreprise.adresse)}}
         </div>
         <div>
            {{form_label(vueFormulaireAjoutEntreprise.activite)}}
-           {{form_errors(vueFormulaireAjoutEntreprise.activite)}}
            {{form_widget(vueFormulaireAjoutEntreprise.activite)}}
         </div>
+        <button type="submit" class="btn btn-dark btn-lg" style="margin-top: 20px">Sauvegarder !</button>
         {{form_end(vueFormulaireAjoutEntreprise)}}
+
+        
     </div>
 </div>
 

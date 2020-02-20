@@ -9,8 +9,11 @@ use App\Entity\Entreprise;
 use App\Entity\Formation;
 use App\Entity\Stage;
 
-use Symfony/Component/Form/Extension/Core/Type/TextType;
-use Symfony/Component/Form/Extension/Core/Type/TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistance\ObjectManager;
 
 
 class ProStageController extends AbstractController
@@ -103,7 +106,9 @@ class ProStageController extends AbstractController
     /**
      * @Route("/ajoutEntreprise", name="ajoutEntreprise")
      */
-    public function afficherFormulaire_AjoutEntreprise(){
+    public function afficherFormulaire_AjoutEntreprise(Request $requeteHttp){
+
+        $manager=$this->getDoctrine()->getManager();
 
         $entreprise = new Entreprise();
 
@@ -112,9 +117,46 @@ class ProStageController extends AbstractController
                                             ->add('adresse', TextareaType::class)
                                             ->add('activite', TextType::class)
                                             ->getForm();
+        
+        $formulaireAjoutEntreprise->handleRequest($requeteHttp);
+
+        if($formulaireAjoutEntreprise->isSubmitted() && $formulaireAjoutEntreprise->isValid()){
+
+            $manager->persist($entreprise);
+            $manager->flush();
+
+            return $this->redirectToRoute('entreprises');
+        }
 
         return $this->render('pro_stage/ajoutEntreprise.html.twig',
                             ['vueFormulaireAjoutEntreprise' => $formulaireAjoutEntreprise -> createView()]);
+    }
+
+    /**
+     * @Route("/modificationEntreprise/{id}", name="modificationEntreprise")
+     */
+    public function afficherFormulaire_ModificationEntreprise(Entreprise $entreprise, Request $requeteHttp){
+
+        $manager=$this->getDoctrine()->getManager();
+
+        $formulaireModificationEntreprise = $this -> createFormBuilder($entreprise)
+                                            ->add('nom', TextType::class)
+                                            ->add('adresse', TextareaType::class)
+                                            ->add('activite', TextType::class)
+                                            ->getForm();
+        
+        $formulaireModificationEntreprise->handleRequest($requeteHttp);
+
+        if($formulaireModificationEntreprise->isSubmitted() && $formulaireModificationEntreprise->isValid()){
+
+            $manager->persist($entreprise);
+            $manager->flush();
+
+            return $this->redirectToRoute('entreprises');
+        }
+
+        return $this->render('pro_stage/modificationEntreprise.html.twig',
+                            ['vueFormulaireModificationEntreprise' => $formulaireModificationEntreprise -> createView()]);
     }
 
 }

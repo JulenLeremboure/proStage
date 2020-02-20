@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification d'entreprise{% endblock %}
+
+{% block body %}
+
+<div class="row" style="margin-left: 10%">
+    <p><h2>Modifier votre entreprise</h2></p>
+    <br>
+    <div class="col-md-6">
+       {{ form_start(vueFormulaireModificationEntreprise)  }}
+       <div>
+           {{form_label(vueFormulaireModificationEntreprise.nom)}}
+           {{form_widget(vueFormulaireModificationEntreprise.nom)}}
+       </div>
+       <div>
+            {{form_label(vueFormulaireModificationEntreprise.adresse)}}
+            {{form_widget(vueFormulaireModificationEntreprise.adresse)}}
+        </div>
+        <div>
+           {{form_label(vueFormulaireModificationEntreprise.activite)}}
+           {{form_widget(vueFormulaireModificationEntreprise.activite)}}
+        </div>
+        <button type="submit" class="btn btn-dark btn-lg" style="margin-top: 20px">Sauvegarder !</button>
+        {{form_end(vueFormulaireModificationEntreprise)}}
+
+        
+    </div>
+</div>
+
+{% endblock %}

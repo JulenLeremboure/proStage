@@ -6,6 +6,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\NotBlank;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EntrepriseRepository")
  */
@@ -25,16 +28,28 @@ class Entreprise
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 255,
+     *      minMessage = "Le titre doit être au minimum de {{ limit }} caractères...",
+     *      maxMessage = "Le titre doit être au maximum de {{ limit }} caractères..."
+     * )
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank
+     * @Assert\Regex(pattern="^[0-9]{5,5}$",message="Le numéro de rue est pas bon.")
+     * @Assert\Regex(pattern="^[0-9]{5,5}$",message="Le type de route/voie est pas bon.")
+     * @Assert\Regex(pattern="^[0-9]{5,5}$",message="Le code postal est pas bon.")
      */
     private $activite;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="entreprise")
+     * @Assert\NotBlank
      */
     private $stages;
 
