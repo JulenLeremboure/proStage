@@ -35,15 +35,15 @@ class Entreprise
      *      minMessage = "Le titre doit être au minimum de {{ limit }} caractères...",
      *      maxMessage = "Le titre doit être au maximum de {{ limit }} caractères..."
      * )
+     * @Assert\Regex(pattern="/^[1-9][0-9]{0,2}/i",message="Le numéro de rue est pas bon.")
+     * @Assert\Regex(pattern="/.*(Allée|Avenue|Boulevard|Carrefour|Chemin|Impasse|Lotissement|Passage|Place|Quartier|Quai|Résidence|Ruelle|Route|Rue).* /i",message="Le type de route/voie est pas bon.")
+     * @Assert\Regex(pattern="/[0-9]{5,5}/i",message="Le code postal est pas bon.")
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="string", length=50)
      * @Assert\NotBlank
-     * @Assert\Regex(pattern="^[0-9]{5,5}$",message="Le numéro de rue est pas bon.")
-     * @Assert\Regex(pattern="^[0-9]{5,5}$",message="Le type de route/voie est pas bon.")
-     * @Assert\Regex(pattern="^[0-9]{5,5}$",message="Le code postal est pas bon.")
      */
     private $activite;
 

@@ -159,4 +159,35 @@ class ProStageController extends AbstractController
                             ['vueFormulaireModificationEntreprise' => $formulaireModificationEntreprise -> createView()]);
     }
 
+    /**
+     * @Route("/ajoutStage", name="ajoutStage")
+     */
+    public function afficherFormulaire_ajoutStage(Request $requeteHttp){
+
+        $manager=$this->getDoctrine()->getManager();
+
+        $stage = new Stage();
+
+        $formulaireAjoutStage= $this -> createFormBuilder($stage)
+                                            ->add('titre')
+                                            ->add('description')
+                                            ->add('mailContact')
+                                            ->add('dateDebut')
+                                            ->add('dateFin')
+                                            ->getForm();
+        
+        $formulaireAjoutStage->handleRequest($requeteHttp);
+
+        if($formulaireAjoutStage->isSubmitted() && $formulaireAjoutStage->isValid()){
+
+            $manager->persist($stage);
+            $manager->flush();
+
+            return $this->redirectToRoute('entreprises');
+        }
+
+        return $this->render('pro_stage/ajoutStage.html.twig',
+                            ['vueFormulaireAjoutStage' => $formulaireAjoutStage -> createView()]);
+    }
+
 }

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création de stage{% endblock %}
+
+{% block body %}
+
+<div class="row" style="margin-left: 10%">
+    <p><h2>Formulaire pour créer un stage !</h2></p>
+    <br>
+    <div class="col-md-6">
+       
+        {{ form_start(vueFormulaireAjoutStage)}}
+       <div>
+           {{form_label(vueFormulaireAjoutStage.titre)}}
+           {{form_widget(vueFormulaireAjoutStage.titre)}}
+       </div>
+       <div>
+        {{form_label(vueFormulaireAjoutStage.description)}}
+        {{form_widget(vueFormulaireAjoutStage.description)}}
+        </div>
+        <div>
+           {{form_label(vueFormulaireAjoutStage.mailContact)}}
+           {{form_widget(vueFormulaireAjoutStage.mailContact)}}
+        </div>
+        <div>
+           {{form_label(vueFormulaireAjoutStage.dateDebut)}}
+           {{form_widget(vueFormulaireAjoutStage.dateDebut)}}
+        </div>
+        <div>
+           {{form_label(vueFormulaireAjoutStage.dateFin)}}
+           {{form_widget(vueFormulaireAjoutStage.dateFin)}}
+        </div>
+        <button type="submit" class="btn btn-dark btn-lg" style="margin-top: 20px">Sauvegarder !</button>
+        {{form_end(vueFormulaireAjoutStage)}}
+        
+    </div>
+</div>
+
+{% endblock %}
