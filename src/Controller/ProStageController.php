@@ -9,6 +9,9 @@ use App\Entity\Entreprise;
 use App\Entity\Formation;
 use App\Entity\Stage;
 
+use App\Form\EntrepriseType;
+use App\Form\StageType;
+
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -112,11 +115,7 @@ class ProStageController extends AbstractController
 
         $entreprise = new Entreprise();
 
-        $formulaireAjoutEntreprise = $this -> createFormBuilder($entreprise)
-                                            ->add('nom', TextType::class)
-                                            ->add('adresse', TextareaType::class)
-                                            ->add('activite', TextType::class)
-                                            ->getForm();
+        $formulaireAjoutEntreprise = $this->createForm(EntrepriseType::class, $entreprise);
         
         $formulaireAjoutEntreprise->handleRequest($requeteHttp);
 
@@ -139,11 +138,7 @@ class ProStageController extends AbstractController
 
         $manager=$this->getDoctrine()->getManager();
 
-        $formulaireModificationEntreprise = $this -> createFormBuilder($entreprise)
-                                            ->add('nom', TextType::class)
-                                            ->add('adresse', TextareaType::class)
-                                            ->add('activite', TextType::class)
-                                            ->getForm();
+        $formulaireModificationEntreprise = $this->createForm(EntrepriseType::class, $entreprise);
         
         $formulaireModificationEntreprise->handleRequest($requeteHttp);
 
@@ -168,13 +163,7 @@ class ProStageController extends AbstractController
 
         $stage = new Stage();
 
-        $formulaireAjoutStage= $this -> createFormBuilder($stage)
-                                            ->add('titre')
-                                            ->add('description')
-                                            ->add('mailContact')
-                                            ->add('dateDebut')
-                                            ->add('dateFin')
-                                            ->getForm();
+        $formulaireAjoutStage = $this->createForm(StageType::class, $stage);
         
         $formulaireAjoutStage->handleRequest($requeteHttp);
 

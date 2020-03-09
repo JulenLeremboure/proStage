@@ -48,7 +48,7 @@ class Entreprise
     private $activite;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="entreprise")
+     * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="entreprise",cascade={"persist"})
      * @Assert\NotBlank
      */
     private $stages;

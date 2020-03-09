@@ -58,16 +58,17 @@ class AppFixtures extends Fixture
             }
         }
 
-        //Création d'une entreprise dans stage
-        $entrepriseSansStage = new Entreprise();
-
-        $entrepriseSansStage->setNom('L\'entreprise sans stages');
-        $entrepriseSansStage->setAdresse($faker->address());
-        $entrepriseSansStage->setActivite($faker->randomElement($tabActivite));
-    
-        $manager->persist($entrepriseSansStage);
-
-        $manager->flush();
+        
     }
+    //Création d'une entreprise dans stage
+    $entrepriseSansStage = new Entreprise();
+
+    $entrepriseSansStage->setNom('L\'entreprise sans stages');
+    $entrepriseSansStage->setAdresse($faker->address());
+    $entrepriseSansStage->setActivite($faker->randomElement($tabActivite));
+
+    $manager->persist($entrepriseSansStage);
+
+    $manager->flush();
 }
 }
