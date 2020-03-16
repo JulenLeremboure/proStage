@@ -6,6 +6,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\NotBlank;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\StageRepository")
  */
@@ -39,7 +42,8 @@ class Stage
     private $formations;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Entreprise", inversedBy="stages")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Entreprise", inversedBy="stages",cascade={"persist"})
+     * 
      */
     private $entreprise;
 
@@ -52,6 +56,11 @@ class Stage
      * @ORM\Column(type="date", nullable=true)
      */
     private $dateFin;
+
+    /**
+     * @Assert\Valid
+     */
+    private $nouvelleEntreprise;
 
     public function __construct()
     {
@@ -159,6 +168,18 @@ class Stage
     public function setDateFin(?\DateTimeInterface $dateFin): self
     {
         $this->dateFin = $dateFin;
+
+        return $this;
+    }
+
+    public function getNouvelleEntreprise(): ?Entreprise
+    {
+        return $this->nouvelleEntreprise;
+    }
+
+    public function setNouvelleEntreprise(?Entreprise $nouvelleEntreprise): self
+    {
+        $this->nouvelleEntreprise = $nouvelleEntreprise;
 
         return $this;
     }

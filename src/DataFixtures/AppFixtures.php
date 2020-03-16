@@ -8,6 +8,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
 use App\Entity\Stage;
+use App\Entity\User;
 
 class AppFixtures extends Fixture
 {
@@ -15,6 +16,20 @@ class AppFixtures extends Fixture
     {
     $faker = \Faker\Factory::create('fr_FR');
 
+    //CREATION DES UTILISATEURS DE TEST
+    $toufik = new User();
+    $toufik->setEmail("toufik@gmail.fr");
+    $toufik->setRoles(['ROLE_USER','ROLE_ADMIN']);
+    $toufik->setPassword('$2y$15$WR3Xckws0dSZaqCvpMd72e7yOu1BoxYFzQm3kfRFcYssbX0GpgSR2');
+    $manager->persist($toufik);
+
+    $cedrik = new User();
+    $cedrik->setEmail("cedrik@gmail.fr");
+    $cedrik->setRoles(['ROLE_USER']);
+    $cedrik->setPassword('$2y$15$WR3Xckws0dSZaqCvpMd72e7yOu1BoxYFzQm3kfRFcYssbX0GpgSR2');
+    $manager->persist($cedrik);
+
+    //STAGES ET FORMATIONS
     $nbEntrepriseParFormation = 2;
     $nbStageParEntreprise = 3;
     $formations = ['DUT Info', 'DUT GIM', 'Licence Pro'];

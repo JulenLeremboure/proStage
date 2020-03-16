@@ -116,11 +116,10 @@ class ProStageController extends AbstractController
         $entreprise = new Entreprise();
 
         $formulaireAjoutEntreprise = $this->createForm(EntrepriseType::class, $entreprise);
-        
+
         $formulaireAjoutEntreprise->handleRequest($requeteHttp);
 
         if($formulaireAjoutEntreprise->isSubmitted() && $formulaireAjoutEntreprise->isValid()){
-
             $manager->persist($entreprise);
             $manager->flush();
 
@@ -168,11 +167,24 @@ class ProStageController extends AbstractController
         $formulaireAjoutStage->handleRequest($requeteHttp);
 
         if($formulaireAjoutStage->isSubmitted() && $formulaireAjoutStage->isValid()){
+            
+            if($formulaireAjoutStage->getData()->getNouvelleEntreprise() != null){
+                $donneesEntreprise = $formulaireAjoutStage->getData()->getNouvelleEntreprise();
+                $nouvelleEntreprise = new Entreprise();
+               
+                $nouvelleEntreprise->setNom($donneesEntreprise->getNom());
+                $nouvelleEntreprise->setAdresse($donneesEntreprise->getAdresse());
+                $nouvelleEntreprise->setActivite($donneesEntreprise->getActivite());
+
+                $manager->persist($nouvelleEntreprise);
+                $stage->setEntreprise($nouvelleEntreprise);
+            }
+            
 
             $manager->persist($stage);
             $manager->flush();
 
-            return $this->redirectToRoute('entreprises');
+            return $this->redirectToRoute('ajoutStage');
         }
 
         return $this->render('pro_stage/ajoutStage.html.twig',

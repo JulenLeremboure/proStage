@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formations{% endblock %}
+
+   
+
+{% block body %}
+<div>
+    <a class="btn btn-sm btn-success" href="{{ path('formation_new') }}">Créer une formation !</a>
+</div>
+<div class="row">
+        {% for formation in listeFormations %}
+        <div class="col-md-6" >
+            <div class="list-group" style="margin-bottom: 20px">
+                 <a href="#" class="list-group-item list-group-item-action active"><strong><h2>{{formation.nom}}</h2></strong></a>
+                <div class="list-group-item">
+                    <p>
+                        <a href="{{path('stagesFormation', {id:formation.id})}}">Voir tous les stages appartenant à cette formation</a>
+                        <a class="btn btn-dark btn-sm btn-block" href="{{path('formation_edit', {'id':formation.id})}}">Modifier la formation...</a>
+                    </p>
+                </div>
+             </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

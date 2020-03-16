@@ -37,7 +37,11 @@
         <div>
            {{form_label(vueFormulaireAjoutStage.entreprise)}}
            {{form_widget(vueFormulaireAjoutStage.entreprise)}}
-      202  </div>
+        </div>
+        <h5>Si l'entreprise de votre stage n'existe pas, renseignez-la !</h5>
+        <div>
+           {{form_widget(vueFormulaireAjoutStage.nouvelleEntreprise)}}
+        </div>
         <button type="submit" class="btn btn-dark btn-lg" style="margin-top: 20px">Sauvegarder !</button>
         {{form_end(vueFormulaireAjoutStage)}}
         

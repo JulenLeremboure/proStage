@@ -28,12 +28,14 @@ class StageType extends AbstractType
                 'choice_label'=>'nom',
                 'multiple'=>true,
                 'expanded'=>true])
-            /*->add('entreprise',EntityType::class,
+            ->add('entreprise',EntityType::class,
                 ['class'=>Entreprise::class,
                     'choice_label'=>'nom',
                     'multiple'=>false,
-                    'expanded'=>false])*/
-            ->add('entreprise',EntrepriseType::class)
+                    'expanded'=>false])
+            ->add('nouvelleEntreprise',EntrepriseType::class,[
+                'required'=>false,
+            ])
         ;
     }
 
