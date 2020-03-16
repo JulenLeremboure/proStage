@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Validator\Constraints as Assert;
+
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
@@ -60,7 +61,7 @@ class Stage
     /**
      * @Assert\Valid
      */
-    private $nouvelleEntreprise;
+    private $nouvelleEntreprise;//Important de rajouter le assert Valid, sinon : aucunes vérifs sur nouvelleERntreprise
 
     public function __construct()
     {
@@ -182,5 +183,9 @@ class Stage
         $this->nouvelleEntreprise = $nouvelleEntreprise;
 
         return $this;
+    }
+
+    public function __toString(){
+        return "Stage de ".$this->getTitre()." - ".$this->getEntreprise()->getNom();
     }
 }

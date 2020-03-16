@@ -1,0 +1,32 @@
+easy_admin:
+    entities:
+       # List the entity class name you want to manage
+       - App\Entity\Entreprise
+       - App\Entity\Stage
+       - App\Entity\Formation
+       - App\Entity\User
+        Entreprise:
+            class: AppBundle\Entity\Entreprise
+            label: 'Gestion des entreprises'
+            list:
+                fields:
+                    - id
+                    - nom
+                    - { property: 'activite', label: "Activite" }
+                    -  property: 'stages', label: "Nombre de stages" }
+        Stage:
+            class: AppBundle\Entity\Entreprise
+            label: 'Gestion des stages'
+            list:
+                fields:
+                    - id
+                    - Titre
+                    - { property: 'mailContact', 'Mail' }
+                    - { property: 'dateDebut', 'Date debut' }
+                    - dateFin
+                    - { property: 'formations', 'Nombre de formations' }
+                    - entreprise
+                    
+    site_name: <img src="https://i.ytimg.com/vi/_N4XunFaSnU/mqdefault.jpg" /><center>Les stages de Nounours</center>
+    design:
+        brand_color: '#a36b00'

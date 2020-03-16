@@ -34,7 +34,7 @@ class StageType extends AbstractType
                     'multiple'=>false,
                     'expanded'=>false])
             ->add('nouvelleEntreprise',EntrepriseType::class,[
-                'required'=>false,
+                'required'=>false,//On n'est pas obligé de renseigner une nouvelle entreprise
             ])
         ;
     }
